@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+    ReWriteEngine on
+    ReWriteCond %{REQUEST_FILENAME} !-f
+    ReWriteCond %{REQUEST_FILENAME} !-d
+    ReWriteCond $1 !^(index\.php|images|robots\.txt)
+    ReWriteRule ^(.*)$ index.php/$0 [L]
+    Options -Indexes
+    ErrorDocument 404 not_found.php
+
+    <files ~ "^.*\.([Hh][Tt][Aa])">
+    order allow,deny
+    deny from all
+    satisfy all
+    </files>
+</IfModule>
